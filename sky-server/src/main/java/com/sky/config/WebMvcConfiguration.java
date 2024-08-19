@@ -41,20 +41,20 @@ public class WebMvcConfiguration extends WebMvcConfigurationSupport {
      * 通过knife4j生成接口文档
      * @return
      */
-    @Bean
+    @Bean//创建 ApiInfo 对象，设置 API 文档的标题、版本和描述信息。
     public Docket docket() {
         ApiInfo apiInfo = new ApiInfoBuilder()
-                .title("苍穹外卖项目接口文档")
+                .title("接口文档")
                 .version("2.0")
-                .description("苍穹外卖项目接口文档")
+                .description("项目接口文档")
                 .build();
-        Docket docket = new Docket(DocumentationType.SWAGGER_2)
-                .apiInfo(apiInfo)
-                .select()
-                .apis(RequestHandlerSelectors.basePackage("com.sky.controller"))
-                .paths(PathSelectors.any())
+        Docket docket = new Docket(DocumentationType.SWAGGER_2)//创建 Docket 对象并配置 Swagger 文档
+                .apiInfo(apiInfo)//设置文档类型为 Swagger 2 设置文档信息 apiInfo
+                .select()//
+                .apis(RequestHandlerSelectors.basePackage("com.sky.controller"))//选择哪些 Controller 类参与文档生成，这里选择了包 com.sky.controller 下的所有 Controlle
+                .paths(PathSelectors.any())//选择所有路径
                 .build();
-        return docket;
+        return docket;//返回配置好的 Docket 实例
     }
 
     /**
